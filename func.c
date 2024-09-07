@@ -1,4 +1,4 @@
-#include "func.h"
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -70,32 +70,34 @@ void registrarEspecies(const char *nomearquivo, int num) {
         char coordx[20], coordy[20], populacao[20], impacto[20], Id[20]; //variaveis auxiliares para leitura    
 
         // Ler dados para cada registro
-        printf("Digite o ID da espécie: ");
+        
         readline(Id, sizeof(Id));
         animais[i].especieID = atoi(Id);
 
-        printf("Digite o nome comum da espécie: ");
+        
         readline(animais[i].nome, sizeof(animais[i].nome));
 
-        printf("Digite o nome científico da espécie: ");
+        
         readline(animais[i].nome_cientifico, sizeof(animais[i].nome_cientifico));
 
-        printf("Digite a população: ");
+       
         readline(populacao, sizeof(populacao));
+
         animais[i].populacao = atoi(populacao);
 
-        printf("Digite o status: ");
+       
         readline(animais[i].status, sizeof(animais[i].status));
 
-        printf("Digite a coordenada X: ");
+
+        
         readline(coordx, sizeof(coordx));
         animais[i].localizacao[0] = atof(coordx);
 
-        printf("Digite a coordenada Y: ");
+        
         readline(coordy, sizeof(coordy));
         animais[i].localizacao[1] = atof(coordy);
 
-        printf("Digite o impacto humano: ");
+        
         readline(impacto, sizeof(impacto));
         animais[i].impacto_humano = atoi(impacto);
 
@@ -105,12 +107,14 @@ void registrarEspecies(const char *nomearquivo, int num) {
 
     fclose(file);
     free(animais);  // Libera a memória alocada, e tambem libera os animaiszinhos 
-    printf("Espécies registradas com sucesso!\n");
+    
 }
 
 void exibirEspecies(const char *nomearquivo) {
     FILE *file = fopen(nomearquivo, "rb");
     if (file == NULL) {
+
+
         printf("Falha no processamento do arquivo\n");
         return;
     }
@@ -119,11 +123,17 @@ void exibirEspecies(const char *nomearquivo) {
     size_t tamanho_registro = sizeof(Registro);
     while (fread(&especie, tamanho_registro, 1, file)) { //enquanto tiver conteudo para ler
         printf("ID: %d\n", especie.especieID);
+
         printf("Nome: %s\n", strcmp(especie.nome, "") == 0 ? "NULO" : especie.nome);
+
         printf("Nome Científico: %s\n", strcmp(especie.nome_cientifico, "") == 0 ? "NULO" : especie.nome_cientifico);
+
         printf("População: %d\n", especie.populacao == 0 ? 0 : especie.populacao);
+
         printf("Status: %s\n", strcmp(especie.status, "") == 0 ? "NULO" : especie.status);
+
         printf("Localização: (%.2f, %.2f)\n", especie.localizacao[0], especie.localizacao[1]); //eixo x e y juntos 
+
         printf("Impacto Humano: %d\n\n", especie.impacto_humano);
     }
 
