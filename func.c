@@ -220,4 +220,5 @@ int main() {
     // Testa a função para buscar uma espécie pelo RRN
     int rrn;
     printf("Digite o RRN da espécie a ser buscada: ");
-    scanf("%d", &rrn
+    scanf("%d", &rrn);
+}
